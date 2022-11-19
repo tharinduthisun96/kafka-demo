@@ -1,0 +1,26 @@
+docker-compose up -d
+docker-compose down
+docker exec -it broker bash
+cd /opt/kafka/bin/
+
+
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --replication-factor 1 --partitions 3 --topic employee-topic
+
+
+
+docker exec broker \
+kafka-topics --bootstrap-server broker:9092 \
+             --create \
+             --topic quickstart
+
+
+
+
+docker exec --interactive --tty broker \
+kafka-console-producer --bootstrap-server broker:9092 \
+                       --topic quickstart
+
+https://developer.confluent.io/quickstart/kafka-docker/?build=apps
+
+node consumer.js
+node producer.js
